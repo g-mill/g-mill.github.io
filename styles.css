@@ -43,9 +43,9 @@
 /* Styling for the intro text */
 .intro {
     font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 150; /* Light font weight */
+    font-weight: 349; /* Light font weight */
     color: #000000; /* Black text color */
-    font-size: 0.9rem; /* Adjust font size as needed */
+    font-size: 0.95rem; /* Adjust font size as needed */
     line-height: 1.25; /* Adjust line height for better spacing */
     margin-top: 0;
 }
@@ -217,8 +217,8 @@
   }
   
   .minimalist-text {
-    font-size: 0.8rem; /* Smaller font size for text */
-    font-weight: 310; /* Light font weight */
+    font-size: 0.9rem; /* Smaller font size for text */
+    font-weight: 300; /* Light font weight */
     line-height: 1.5; /* Adjust line height for better spacing */
     margin-top: 10px; /* Space between paragraphs */
   }
