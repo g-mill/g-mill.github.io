@@ -1,0 +1,271 @@
+/* Custom navbar styling */
+.navbar {
+    background-color: transparent; /* Transparent background color */
+    padding: 10px 0; /* Add some padding for better spacing */
+  }
+  
+  .navbar-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Evenly spread the nav links */
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 1rem; /* Adjust the font size to match the picture */
+    font-weight: 375; /* Use a lighter font weight */
+  }
+  
+  .nav-link {
+    color: #343a40; /* Dark text color */
+    text-align: center;
+    width: 100%; /* Make each link take equal space */
+    font-weight: 375; /* Light font weight for thin text */
+  }
+  
+  .nav-link:hover {
+    text-decoration: none; /* Remove underline on hover */
+  }
+
+.content-container{
+  width: 100%;/* Adjust the max-width as per your navbar width */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 19px; /* Adjust the padding as needed */
+  padding-right: 19px; /* Adjust the padding as needed */
+}
+  
+  
+/* Custom About Me section styling */
+#about {
+    background-color: #ffffff; /* White background */
+    margin-top: 80px; /* Add margin-top to push the section down */
+    margin-bottom: 80px;
+}
+
+/* Styling for the intro text */
+.intro {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 150; /* Light font weight */
+    color: #000000; /* Black text color */
+    font-size: 0.9rem; /* Adjust font size as needed */
+    line-height: 1.25; /* Adjust line height for better spacing */
+    margin-top: 0;
+}
+
+.title-header{
+  font-size: 2.7rem; /* Adjust font size as needed */
+  font-weight: 200; /* Semi-bold weight */
+  margin-bottom: 0px; /* Space above the section title */
+  font-family: 'Helvetica Neue', sans-serif;
+  margin-top: 0;
+}
+
+
+.experiences{
+  padding-top: 50px;
+}
+
+/* Styling for the email link */
+.email-link {
+    color: #616161; /* Initial grey color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Smooth transition */
+}
+
+.email-link:hover {
+    color: #1f1f1f; /* Darker grey on hover */
+}
+
+/* Style for the smaller image */
+.minimalist-image {
+    width: 100%; /* Ensure image is responsive */
+    height: auto;
+    display: block; /* Center the image */ 
+    max-width: 700px; /* Set maximum width for the image */
+    margin-right: 0px;
+    padding-right: 0px;
+}
+
+.marimba-image {
+  width: 100%; /* Ensure image is responsive */
+  height: auto;
+  display: block; /* Center the image */
+  max-width: 100%; /* Set maximum width for the image */
+  margin-right: 0px;
+}
+
+.col-md-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 650px; /* Ensure the max width for the image */
+}
+
+
+/* Styling for section titles */
+.section-title {
+    font-size: 1.25rem; /* Adjust font size as needed */
+    font-weight: 200; /* Semi-bold weight */
+    margin-top: 20px; /* Space above the section title */
+}
+
+#about .col-md-6 {
+  padding-left: 0; /* Remove left padding */
+  padding-right: 0; /* Remove right padding */
+}
+
+
+
+/* Styling for the client list */
+.client-list {
+    font-size: 0.9rem;
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 150; /* Light font weight */
+    color: #000000; /* Black text color */
+}
+
+.client-list li {
+    margin-bottom: 0; /* Remove space between list items */
+}
+
+/* Position the work experiences at the bottom of the image */
+.work-experiences {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+}
+
+
+/* Custom project card styling */
+#projects {
+    background-color: #ffffff; /* Light gray background */
+    padding: 50px 0; /* Vertical padding */
+    margin-bottom: 80px;
+  }
+
+  .project-header{
+    font-size: 2.5rem; /* Adjust font size as needed */
+    font-weight: 200; /* Semi-bold weight */
+    margin-bottom: 50px; /* Space above the section title */
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+  
+  .project-card {
+    background-color: #ffffff; /* White background for project cards */
+    border: 1px solid #e0e0e0; /* Light border */
+    padding: 20px; /* Padding inside the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: left; /* Left-aligned text */
+  }
+  
+  .project-title {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 400; /* Regular font weight */
+    color: #000000; /* Black text color */
+    margin-bottom: 10px; /* Spacing below the title */
+  }
+  
+  .project-subtitle {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 300; /* Light font weight */
+    color: #6c757d; /* Secondary text color */
+    margin-bottom: 10px; /* Spacing below the subtitle */
+  }
+  
+  .project-text {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 300; /* Light font weight */
+    color: #6c757d; /* Secondary text color */
+    margin-bottom: 20px; /* Spacing below the text */
+  }
+  
+  .project-link {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 300; /* Light font weight */
+    color: #0056b3; /* Link color */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .project-link:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+
+#buttonwood:hover{
+    cursor: pointer;
+}
+
+/* Minimalistic content styling */
+.minimalist-content {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 300; /* Light font weight */
+    color: #000000; /* Black text color */
+    margin-top: 0;
+  }
+  
+  .minimalist-title {
+    font-size: 1rem; /* Smaller font size */
+    font-weight: 400; /* Regular font weight */
+    margin-top: 0px; /* Remove default margin */
+    line-height: 1.5; /* Adjust line height for better spacing */
+  }
+  
+  .minimalist-subtitle {
+    font-size: 0.875rem; /* Smaller font size for subtitle */
+    font-weight: 300; /* Light font weight */
+    margin: 0; /* Remove default margin */
+    line-height: 1.5; /* Adjust line height for better spacing */
+  }
+  
+  .minimalist-text {
+    font-size: 0.8rem; /* Smaller font size for text */
+    font-weight: 310; /* Light font weight */
+    line-height: 1.5; /* Adjust line height for better spacing */
+    margin-top: 10px; /* Space between paragraphs */
+  }
+  
+  
+  /* Video should also be responsive */
+  #buttonwood {
+    width: 100%; /* Make the video responsive */
+    height: auto;
+  }
+  
+  .music-dates {
+    font-size: 0.9rem; /* Smaller font size for text */
+    font-weight: 300; /* Light font weight */
+    line-height: 1.5; /* Adjust line height for better spacing */
+    margin-top: 10px; /* Space between paragraphs */
+    margin-bottom: 0px;
+  }
+
+  #music{
+    padding-top: 40px;
+  }
+
+
+  .footer {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .footer .footer-text {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 300; /* Light font weight */
+    color: #555555; /* Gray text color */
+    font-size: 0.6rem; /* Adjust font size as needed */
+    margin: 0;
+  }
+
+  .col-marimba{
+    margin-right: 0;
+    padding-right: 0;
+  }
+  
+
+
+  
