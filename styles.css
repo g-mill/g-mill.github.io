@@ -79,7 +79,7 @@
     width: 100%; /* Ensure image is responsive */
     height: auto;
     display: block; /* Center the image */ 
-    max-width: 700px; /* Set maximum width for the image */
+    max-width: 550px; /* Set maximum width for the image */
     margin-right: 0px;
     padding-right: 0px;
 }
@@ -257,7 +257,7 @@
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: 300; /* Light font weight */
     color: #555555; /* Gray text color */
-    font-size: 0.6rem; /* Adjust font size as needed */
+    font-size: 0.8rem; /* Adjust font size as needed */
     margin: 0;
   }
 
