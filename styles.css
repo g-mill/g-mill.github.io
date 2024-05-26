@@ -115,12 +115,13 @@
 
 /* Styling for the client list */
 .client-list {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     list-style-type: none; /* Remove default list styling */
     padding: 0; /* Remove default padding */
     font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 150; /* Light font weight */
+    font-weight: 349; /* Light font weight */
     color: #000000; /* Black text color */
+    line-height: 1.5; /* Adjust line height for better spacing */
 }
 
 .client-list li {
