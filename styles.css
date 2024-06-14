@@ -269,4 +269,14 @@
   
 
 
+.double-link a {
+  display: block;
+  margin-bottom: 7px; /* Adjust the value as needed for spacing */
+}
+
+.double-link a:last-child {
+    margin-bottom: 0; /* Removes margin from the last link to avoid unnecessary spacing */
+}
+
+
   
