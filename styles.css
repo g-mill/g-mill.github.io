@@ -24,12 +24,12 @@
     text-decoration: none; /* Remove underline on hover */
   }
 
-.content-container{
-  width: 100%;/* Adjust the max-width as per your navbar width */
+.content-container {
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 19px; /* Adjust the padding as needed */
-  padding-right: 19px; /* Adjust the padding as needed */
+  padding-left: 19px;
+  padding-right: 19px;
 }
   
   
@@ -59,8 +59,9 @@
 }
 
 
-.experiences{
-  padding-top: 50px;
+#about .experiences {
+  margin-top: auto; /* Push the experiences to the bottom */
+  align-self: flex-start; /* Aligns the work experiences to the bottom */
 }
 
 /* Styling for the email link */
