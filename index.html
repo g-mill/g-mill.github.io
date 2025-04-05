@@ -15,10 +15,9 @@
     <script>
       // Redirect for /laborday path
       const path = window.location.pathname.toLowerCase();
-      const params = new URLSearchParams(window.location.search);
       if (path === '/laborday' || path === '/laborday/' || 
-          path === '/laborday2025' || 
-          (path === '/laborday' && params.get('v') === '2')) {
+          path === '/laborday2025' || path === '/laborday/2025' || 
+          path === '/laborday/2025/') {
         window.location.href = 'https://readymag.website/u1505837235/4644578/';
       }
     </script>
