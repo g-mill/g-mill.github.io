@@ -14,8 +14,11 @@
     <link rel="stylesheet" href="styles.css">
     <script>
       // Redirect for /laborday path
-      if (window.location.pathname.toLowerCase() === '/laborday' || 
-          window.location.pathname.toLowerCase() === '/laborday2025') {
+      const path = window.location.pathname.toLowerCase();
+      const params = new URLSearchParams(window.location.search);
+      if (path === '/laborday' || path === '/laborday/' || 
+          path === '/laborday2025' || 
+          (path === '/laborday' && params.get('v') === '2')) {
         window.location.href = 'https://readymag.website/u1505837235/4644578/';
       }
     </script>
@@ -158,11 +161,11 @@
                   </div>
                   <div>
                       <p class="minimalist-text">
-                          I have a complicated relationship with the snare drum. It’s a peculiar instrument,
+                          I have a complicated relationship with the snare drum. It's a peculiar instrument,
                           calling for repeated rhythmic strokes on a drum surface undergirded by wires,
                           whereas I gravitate towards the elements of melody and harmony offered by mallet
                           instruments. My teachers, however, have always challenged and inspired me to
-                          search for singable phrases hidden in snare drum music. Evan Chapman’s Buttonwood
+                          search for singable phrases hidden in snare drum music. Evan Chapman's Buttonwood
                           is intrinsically expressive and avant-garde. He composed the piece with the intention
                           of evoking the repinique – a Brazilian metal drum played with one hand and one stick
                           – by incorporating several different timbres: sounds that are low, high, short, long,
@@ -172,7 +175,7 @@
                       </p>
                       <p class="minimalist-text">
                           Whenever I bring friends to the symphony, I often encounter the same anxious refrain
-                          – what do I wear? Over the past few years, I’ve developed a fascination with haute
+                          – what do I wear? Over the past few years, I've developed a fascination with haute
                           couture. This project reimagines the symphony hall as a kind of public runway and
                           an open and expressive social forum where audiences can participate in a creative
                           project alongside the musicians, allowing high fashion to be enjoyed in arenas outside
@@ -204,23 +207,23 @@
                           later work of Igor Stravinsky, though still initially reflecting elements of his earlier
                           Neoclassical idiom. The Septet opens with a traditional sonata form in the first
                           movement with polished contrapuntal elements. The piece then departs from the
-                          Neoclassical sound in the second movement, though preserving “classical”
+                          Neoclassical sound in the second movement, though preserving "classical"
                           compositional techniques, as indicated by the heading Passacaglia: a movement based
                           on a repeating bass line, originally tonal in design, though no longer the case here.
                           By the third movement (Gigue), Stravinsky experiments with serialism. At its core,
                           serialism involves an ordered collection of musical elements, such as pitches or
-                          rhythms, arranged in a specific order or “series” that is then used as the basis for
+                          rhythms, arranged in a specific order or "series" that is then used as the basis for
                           composing a piece through manipulation and transformation, instead of the
                           traditional organizing principle of tonal scales and chord progressions. In this way,
-                          Stravinsky’s Septet contributed to his departure from traditional tonal reference points
+                          Stravinsky's Septet contributed to his departure from traditional tonal reference points
                           in his earlier Neoclassical style. 
                       </p>
                       <p class="minimalist-text">
-                          I’ve been fortunate enough to work closely with Paul Phillips as my conducting mentor
-                          and professor. Over the past four years, I’ve both played Stravinsky’s symphonic
-                          repertoire under Maestro Phillips’ baton in the Stanford Symphony Orchestra and
+                          I've been fortunate enough to work closely with Paul Phillips as my conducting mentor
+                          and professor. Over the past four years, I've both played Stravinsky's symphonic
+                          repertoire under Maestro Phillips' baton in the Stanford Symphony Orchestra and
                           studied the scores of his other works as a conducting student. I am honored to include
-                          Stravinsky’s Septet in my capstone recital with an ensemble of musicians with whom I
+                          Stravinsky's Septet in my capstone recital with an ensemble of musicians with whom I
                           have worked closely, both from the back of the orchestra as a timpanist and the front
                           as a conductor.
                       </p>
@@ -242,24 +245,24 @@
                 </div>
                 <div>
                     <p class="minimalist-text">
-                      Johann Sebastian Bach’s Solo Cello Suites follow the traditional form of the German
+                      Johann Sebastian Bach's Solo Cello Suites follow the traditional form of the German
                       instrumental suite – an intricate prélude followed by a set of dances: allemande,
-                      courante, sarabande, minuet, and gigue. Bach’s dance suites have a rich social history,
+                      courante, sarabande, minuet, and gigue. Bach's dance suites have a rich social history,
                       reflecting aristocratic forms of entertainment emulated by many among the middle
                       and upper classes during the European Baroque era. The first cello suite opens with
                       a familiar steady-paced prélude, followed by a balance of lively and slower dances.
-                      Throughout my time at Stanford, I’ve prepared many of these individual dances from
+                      Throughout my time at Stanford, I've prepared many of these individual dances from
                       various suites for marimba and I am thrilled to program the first cello suite in its
                       entirety.
                     </p>
                     <p class="minimalist-text">
-                      Bach’s compositional genius predates the popularization of the marimba in the
+                      Bach's compositional genius predates the popularization of the marimba in the
                       mid-20th century by about three hundred years. Nonetheless, percussionists have
                       adapted transcriptions of the unaccompanied violin, lute, and cello suites to the
                       versatile and wide-ranging instrument, utilizing its five-octave range to highlight
-                      the marimba’s virtuosity and the musicality of Bach’s compositions. This is not to say,
+                      the marimba's virtuosity and the musicality of Bach's compositions. This is not to say,
                       however, that a marimbist approaches Bach in the same way that a cellist would.
-                      Marimbists must consider the instrument’s inability to sustain pitches as a bowed
+                      Marimbists must consider the instrument's inability to sustain pitches as a bowed
                       string instrument would be able to; the performer might choose to execute a roll –
                       which involves repeatedly hitting the note to imitate the sustain of a bow – rather
                       than allow for the natural rosewood bar to vibrate into the metal resonators below
