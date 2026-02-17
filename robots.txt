@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /laborday/
+Disallow: /laborday2025/
+
+Sitemap: https://griffinmiller.com/sitemap.xml
