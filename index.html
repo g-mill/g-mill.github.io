@@ -111,7 +111,8 @@
   </head>
   <body id="home">
 
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-transparent">
+    <header>
+      <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-transparent" aria-label="Main navigation">
         <div class="container-fluid justify-content-center">
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -126,15 +127,16 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="src/resume.pdf" target="_blank">RESUME</a>
-              </li> 
+              </li>
             </ul>
           </div>
         </div>
       </nav>
-      
+    </header>
 
+    <main>
 
-      <div id="about" class="d-flex align-items-start">
+      <section id="about" class="d-flex align-items-start">
         <div class="container-fluid content-container">
           <div class="row">
             <!-- Image Column -->
@@ -162,7 +164,7 @@
               </div>
               <div class="row mt-auto">
                 <div class="col">
-                  <p class="section-title">Work Experiences:</p>
+                  <h2 class="section-title">Work Experiences:</h2>
                   <ul class="client-list">
                     <li>Cosmos</li>
                     <li>The New York Times</li>
@@ -181,54 +183,54 @@
             </div>
           </div>
         </div>
-      </div>
-      
-    
-      
+      </section>
 
 
-      <div id="projects" class="py-5">
+
+
+
+      <section id="projects" class="py-5">
         <div class="container-fluid content-container">
             <div class="row text-center mb-4">
-                <h1 class="font-weight-light project-header">RECENT PROJECTS</h1>
+                <h2 class="font-weight-light project-header">RECENT PROJECTS</h2>
             </div>
             <div class="row justify-content-center d-flex">
                 <div class="col-md-4 mb-4 d-flex">
-                    <div class="project-card flex-grow-1 d-flex flex-column">
-                        <h5 class="project-title">Sidekick</h5>
+                    <article class="project-card flex-grow-1 d-flex flex-column">
+                        <h3 class="project-title">Sidekick</h3>
                         <p class="project-subtitle">A replication study of "Sidekick: In-Network Assistance for Secure End-to-End Transport Protocols" (NSDI '24).</p>
                         <div class="mt-auto double-link">
                             <a href="https://github.com/cs244-team/sidekick" class="email-link" target="_blank">Link to repo</a>
                             <a href="https://reproducingnetworkresearch.wordpress.com/2024/06/08/cs-244-24-replicating-results-from-sidekick-in-network-assistance-for-secure-end-to-end-transport-protocols/" class="email-link" target="_blank">Link to paper</a>
                         </div>
-                    </div>
+                    </article>
                 </div>
                 <div class="col-md-4 mb-4 d-flex">
-                    <div class="project-card flex-grow-1 d-flex flex-column">
-                        <h5 class="project-title">I2S Speaker & Amplifier</h5>
+                    <article class="project-card flex-grow-1 d-flex flex-column">
+                        <h3 class="project-title">I2S Speaker & Amplifier</h3>
                         <p class="project-subtitle">Functional Adafruit MAX98357 I2S Class-D Mono Amplifier and Knowles SPH0645LM4H-B Microphone</p>
                         <p class="project-text">Runs on top of simple, clean OS for the widely-used, ARM-based Raspberry Pi that I built from scratch over the course of a quarter.</p>
                         <div class="mt-auto">
                             <a href="https://github.com/g-mill/speaker" class="email-link" target="_blank">Link to repo</a>
                         </div>
-                    </div>
+                    </article>
                 </div>
                 <div class="col-md-4 mb-4 d-flex">
-                    <div class="project-card flex-grow-1 d-flex flex-column">
-                        <h5 class="project-title">SecurityTok</h5>
+                    <article class="project-card flex-grow-1 d-flex flex-column">
+                        <h3 class="project-title">SecurityTok</h3>
                         <p class="project-subtitle">Evaluating Pro-Security Advice on TikTok</p>
                         <p class="project-text">A qualitative study of the quality of modern technological security education on social media</p>
                         <div class="mt-auto">
                             <a href="media/SecurityTok.pdf" class="email-link" target="_blank">Link to paper</a>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
 
-        <div id="music" class="container-fluid content-container">
+        <section id="music" class="container-fluid content-container">
           <div class="row align-items-start mb-4"> <!-- Added mb-4 for margin-bottom -->
               <div class="col-12 text-left">
                   <p class="music-dates">SENIOR RECITAL, SPRING 2023</p>
@@ -241,8 +243,8 @@
               </div>
               <div class="col-md-6 text-left minimalist-content d-flex flex-column align-items-start">
                   <div>
-                      <h5 class="minimalist-title">Evan Chapman – Buttonwood</h5>
-                      <h6 class="minimalist-subtitle fst-italic">Snare Drum & Electronics</h6>
+                      <h3 class="minimalist-title">Evan Chapman – Buttonwood</h3>
+                      <h4 class="minimalist-subtitle fst-italic">Snare Drum & Electronics</h4>
                       <img src="media/legend.png" class="img-fluid minimalist-image" alt="Key for Buttonwood">
                   </div>
                   <div>
@@ -284,8 +286,8 @@
               </div>
               <div class="col-md-6 text-left minimalist-content d-flex flex-column align-items-start">
                   <div>
-                      <h5 class="minimalist-title">Igor Stravinsky - Septet</h5>
-                      <h6 class="minimalist-subtitle fst-italic">Clarinet, bassoon, horn, piano, violin, viola, cello</h6>
+                      <h3 class="minimalist-title">Igor Stravinsky - Septet</h3>
+                      <h4 class="minimalist-subtitle fst-italic">Clarinet, bassoon, horn, piano, violin, viola, cello</h4>
                   </div>
                   <div>
                       <p class="minimalist-text">
@@ -326,8 +328,8 @@
             </div>
             <div class="col-md-6 text-left minimalist-content d-flex flex-column align-items-start">
                 <div>
-                    <h5 class="minimalist-title">Johann Sebastian Bach – Cello Suite No. 1 in G Major, BWV 1007</h5>
-                    <h6 class="minimalist-subtitle fst-italic">Cello, transcribed for Marimba</h6>
+                    <h3 class="minimalist-title">Johann Sebastian Bach – Cello Suite No. 1 in G Major, BWV 1007</h3>
+                    <h4 class="minimalist-subtitle fst-italic">Cello, transcribed for Marimba</h4>
                 </div>
                 <div>
                     <p class="minimalist-text">
@@ -371,19 +373,20 @@
             </div>
             <div class="col-md-6 text-left minimalist-content d-flex flex-column align-items-start">
                 <div>
-                    <h5 class="minimalist-title">Gordon Jacob - Old Wine in New Bottles</h5>
-                    <h6 class="minimalist-subtitle fst-italic">Woodwinds, trumpets, and horns</h6>
+                    <h3 class="minimalist-title">Gordon Jacob - Old Wine in New Bottles</h3>
+                    <h4 class="minimalist-subtitle fst-italic">Woodwinds, trumpets, and horns</h4>
                 </div>
 
             </div>
         </div>
-      </div>
+      </section>
       <script src="videoControl.js"></script>
-      
-  
-    <div class="footer">
+
+    </main>
+
+    <footer class="footer">
       <p class="footer-text">WEBSITE CODED AND BUILT BY GRIFFIN MILLER. <a class="email-link" target="_blank" href="https://github.com/g-mill/g-mill.github.io">PROJECT CODE IS OPEN SOURCE</a>.</p>
-    </div>
+    </footer>
 
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
