@@ -475,17 +475,33 @@ strong { font-weight: 700; }
   background: var(--paper-shadow);
   overflow: hidden;
   flex: 0 0 auto;
-  opacity: 0;
-  transition: opacity 500ms ease, box-shadow 280ms ease;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 280ms ease;
   box-shadow: 0 1px 0 rgba(43,85,28,0.08), 0 12px 24px rgba(43,85,28,0.05);
 }
 
-.photo.loaded { opacity: 1; }
-
-.photo {
-  cursor: pointer;
-  outline: none;
+/* "memory loading…" placeholder. Visible until the image's load event
+   adds the .loaded class, then it fades out as the photo fades in. */
+.photo::before {
+  content: "memory loading…";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.4rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: rgba(43, 85, 28, 0.55);
+  pointer-events: none;
+  transition: opacity 360ms ease;
 }
+
+.photo.loaded::before { opacity: 0; }
 .photo:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 2px;
@@ -496,8 +512,15 @@ strong { font-weight: 700; }
   height: 100%;
   display: block;
   object-fit: cover;
-  transition: transform 700ms ease;
+  opacity: 0;
+  transition: transform 700ms ease, opacity 500ms ease;
+  /* Don't render the alt text visibly while the image is loading —
+     screen readers still announce the alt attribute. */
+  font-size: 0;
+  color: transparent;
 }
+
+.photo.loaded img { opacity: 1; }
 
 /* Hover affordances only on real mouse devices — touch scrolling on
    mobile would otherwise trigger them and cause flashing. */
@@ -551,6 +574,8 @@ strong { font-weight: 700; }
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
   user-select: none;
   -webkit-user-drag: none;
+  font-size: 0;
+  color: transparent;
 }
 
 .lightbox-caption {
