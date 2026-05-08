@@ -1,0 +1,28 @@
+# Cloudflare Pages headers
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# Long cache for static assets
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/laborday2026/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# CSS and JS — short cache so updates ship quickly
+/*.css
+  Cache-Control: public, max-age=300, must-revalidate
+
+/*.js
+  Cache-Control: public, max-age=300, must-revalidate
+
+# HTML — always revalidate so new deploys are seen instantly
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Sensible defaults for everything else
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
