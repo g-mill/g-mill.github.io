@@ -214,7 +214,7 @@
     <section class="section" id="rsvp">
       <h2 class="section-title">RSVP</h2>
       <p class="rsvp-text">
-        Please only fill out the form linked below if you are able to attend Labor Day at the Lake, 2026.
+        If you are able to attend Labor Day at the Lake 2026, please fill out the form below.
       </p>
       <a class="rsvp-button" href="https://forms.gle/wZKvWHNGwxEW7XaR6" target="_blank" rel="noopener">RSVP</a>
       <p class="rsvp-deadline"><em>Please respond by July 31st.</em></p>
@@ -224,6 +224,17 @@
       <a href="#top" class="footer-link">↑ back to top</a>
       <p class="footer-mark">Camp Starlight · Labor Day</p>
     </footer>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" hidden aria-hidden="true">
+      <button class="lightbox-close" type="button" aria-label="Close (Esc)">✕</button>
+      <button class="lightbox-prev" type="button" aria-label="Previous (←)">‹</button>
+      <button class="lightbox-next" type="button" aria-label="Next (→)">›</button>
+      <figure class="lightbox-figure">
+        <img class="lightbox-img" src="" alt="" />
+        <figcaption class="lightbox-caption"></figcaption>
+      </figure>
+    </div>
 
   </main>
 
@@ -396,7 +407,7 @@
       return 130;
     }
 
-    function renderJustified(container, items) {
+    function renderJustified(container, items, onPhotoClick) {
       container.innerHTML = "";
       const containerWidth = container.clientWidth;
       if (containerWidth <= 0) return;
@@ -422,6 +433,9 @@
         row.forEach((item) => {
           const fig = document.createElement("figure");
           fig.className = "photo";
+          fig.tabIndex = 0;
+          fig.setAttribute("role", "button");
+          fig.setAttribute("aria-label", "View " + item.alt);
           const w = Math.round(item.ratio * rowHeight);
           fig.style.width = w + "px";
 
@@ -433,6 +447,17 @@
           img.src = item.url + "?w=" + Math.round(reqW);
           img.addEventListener("load", () => fig.classList.add("loaded"));
           img.addEventListener("error", () => fig.remove());
+
+          if (onPhotoClick) {
+            const open = () => onPhotoClick(item);
+            fig.addEventListener("click", open);
+            fig.addEventListener("keydown", (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                open();
+              }
+            });
+          }
 
           fig.appendChild(img);
           rowEl.appendChild(fig);
@@ -469,14 +494,22 @@
       Promise.all(group.photos.map(loadRatio)).then((results) => {
         const items = results
           .filter(Boolean)
-          .map((r, i) => ({ ...r, alt: group.year + " — memory " + (i + 1) }));
+          .map((r, i, arr) => ({
+            ...r,
+            year: group.year,
+            index: i,
+            total: arr.length,
+            alt: group.year + " — memory " + (i + 1),
+          }));
         if (items.length === 0) return;
+
+        const onPhotoClick = (item) => Lightbox.open(items, item.index);
 
         let renderTimer = null;
         let lastWidth = 0;
         const render = () => {
           lastWidth = grid.clientWidth;
-          renderJustified(grid, items);
+          renderJustified(grid, items, onPhotoClick);
         };
         render();
 
@@ -529,6 +562,125 @@
       { rootMargin: "-40% 0px -55% 0px" }
     );
     sections.forEach((s) => s && navIO.observe(s));
+
+    // ------------------------------------------------------------------
+    // Lightbox — click any photo to open fullscreen, browse with arrows,
+    // swipe (mobile), or keyboard. Esc / click-outside / ✕ to close.
+    // ------------------------------------------------------------------
+    const Lightbox = (() => {
+      const el = document.getElementById("lightbox");
+      const imgEl = el.querySelector(".lightbox-img");
+      const captionEl = el.querySelector(".lightbox-caption");
+      const closeBtn = el.querySelector(".lightbox-close");
+      const prevBtn = el.querySelector(".lightbox-prev");
+      const nextBtn = el.querySelector(".lightbox-next");
+
+      let list = [];
+      let idx = 0;
+
+      let loadToken = 0;
+      function show() {
+        const item = list[idx];
+        if (!item) return;
+        const sep = item.url.includes("?") ? "&" : "?";
+        const target = Math.round(
+          Math.min(2400, Math.max(1200, window.innerWidth * (window.devicePixelRatio || 1)))
+        );
+        const newSrc = item.url + sep + "w=" + target;
+
+        // Caption updates immediately so navigation feels snappy.
+        captionEl.textContent = `${item.year} · ${idx + 1} / ${list.length}`;
+
+        // Wait for the new image to be ready before swapping into the DOM —
+        // keeps the previous photo visible during the fetch instead of
+        // flashing to blank.
+        const myToken = ++loadToken;
+        const next = new Image();
+        const swap = () => {
+          if (myToken !== loadToken) return; // user moved on, ignore
+          imgEl.src = newSrc;
+          imgEl.alt = item.alt;
+        };
+        next.onload = swap;
+        next.onerror = swap;
+        next.src = newSrc;
+        if (next.complete) swap(); // cache hit — no waiting
+
+        // Aggressively preload ±2 so quick swipes still feel instant.
+        [-2, -1, 1, 2].forEach((delta) => {
+          const n = list[(idx + delta + list.length) % list.length];
+          if (n && n !== item) {
+            new Image().src = n.url + sep + "w=" + target;
+          }
+        });
+      }
+
+      function open(items, startIdx) {
+        list = items;
+        idx = Math.max(0, Math.min(startIdx, items.length - 1));
+        el.hidden = false;
+        el.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        requestAnimationFrame(() => el.setAttribute("data-open", "true"));
+        show();
+      }
+
+      function close() {
+        el.setAttribute("data-open", "false");
+        el.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        setTimeout(() => { el.hidden = true; imgEl.src = ""; }, 240);
+      }
+
+      function next() { idx = (idx + 1) % list.length; show(); }
+      function prev() { idx = (idx - 1 + list.length) % list.length; show(); }
+
+      closeBtn.addEventListener("click", close);
+      nextBtn.addEventListener("click", (e) => { e.stopPropagation(); next(); });
+      prevBtn.addEventListener("click", (e) => { e.stopPropagation(); prev(); });
+
+      // Click outside the figure closes
+      el.addEventListener("click", (e) => {
+        if (e.target === el) close();
+      });
+
+      // Keyboard
+      document.addEventListener("keydown", (e) => {
+        if (el.hidden) return;
+        if (e.key === "Escape") close();
+        else if (e.key === "ArrowRight") next();
+        else if (e.key === "ArrowLeft") prev();
+      });
+
+      // Swipe (mobile) — left/right to navigate, down to close.
+      let touchX = null, touchY = null, touchTime = 0;
+      el.addEventListener("touchstart", (e) => {
+        if (e.touches.length !== 1) return;
+        touchX = e.touches[0].clientX;
+        touchY = e.touches[0].clientY;
+        touchTime = Date.now();
+      }, { passive: true });
+      el.addEventListener("touchend", (e) => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        const dy = e.changedTouches[0].clientY - touchY;
+        const dt = Date.now() - touchTime;
+        const ax = Math.abs(dx);
+        const ay = Math.abs(dy);
+        if (dt < 700) {
+          // Horizontal: navigate
+          if (ax > 50 && ax > ay * 1.5) {
+            dx > 0 ? prev() : next();
+          // Vertical down: close (Instagram-style)
+          } else if (dy > 80 && ay > ax * 1.5) {
+            close();
+          }
+        }
+        touchX = touchY = null;
+      }, { passive: true });
+
+      return { open, close };
+    })();
   </script>
 
 </body>

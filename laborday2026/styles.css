@@ -482,6 +482,15 @@ strong { font-weight: 700; }
 
 .photo.loaded { opacity: 1; }
 
+.photo {
+  cursor: pointer;
+  outline: none;
+}
+.photo:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
 .photo img {
   width: 100%;
   height: 100%;
@@ -497,6 +506,105 @@ strong { font-weight: 700; }
     box-shadow: 0 1px 0 rgba(43,85,28,0.12), 0 18px 36px rgba(43,85,28,0.12);
   }
   .photo:hover img { transform: scale(1.03); }
+}
+
+/* ------------------------------------------------------------------
+   LIGHTBOX
+------------------------------------------------------------------ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(20, 30, 18, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vh, 3rem);
+  opacity: 0;
+  transition: opacity 240ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Critical: without this the .lightbox display: flex above wins over the
+   [hidden] attribute's user-agent rule, leaving an invisible full-viewport
+   overlay that intercepts every click on the page. */
+.lightbox[hidden] { display: none; }
+
+.lightbox[data-open="true"] { opacity: 1; }
+
+.lightbox-figure {
+  margin: 0;
+  max-width: min(1500px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: calc(100vh - 7rem);
+  height: auto;
+  width: auto;
+  display: block;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.lightbox-caption {
+  color: rgba(246, 243, 236, 0.72);
+  font-family: var(--serif);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-align: center;
+  margin: 0;
+}
+
+.lightbox button {
+  position: fixed;
+  background: transparent;
+  border: 0;
+  color: rgba(246, 243, 236, 0.72);
+  cursor: pointer;
+  padding: 0.5rem 0.85rem;
+  font-family: var(--serif);
+  line-height: 1;
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+.lightbox button:hover { color: rgba(246, 243, 236, 1); }
+.lightbox button:active { transform: scale(0.94); }
+
+.lightbox-close {
+  top: 0.85rem;
+  right: 1rem;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.6rem;
+  min-width: 48px;
+  min-height: 48px;
+}
+.lightbox-prev { left: 0.5rem; }
+.lightbox-next { right: 0.5rem; }
+.lightbox-prev:active { transform: translateY(-50%) scale(0.94); }
+.lightbox-next:active { transform: translateY(-50%) scale(0.94); }
+
+/* On phones, hide the side arrow buttons (swipe is the main gesture)
+   so they don't overlap the photo. ✕ stays. */
+@media (max-width: 540px) {
+  .lightbox-prev,
+  .lightbox-next { display: none; }
+  .lightbox-img { max-height: calc(100vh - 5.5rem); }
 }
 
 /* ------------------------------------------------------------------
