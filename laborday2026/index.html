@@ -429,7 +429,7 @@
 
     // Map a full-res photo path to its grid thumbnail (~800px JPG).
     function thumbUrl(url) {
-      return url.replace(/\/photos\/(\d+)\//, "/photos/$1/thumb/");
+      return url.replace(/photos\/(\d+)\//, "photos/$1/thumb/");
     }
 
     // Probe each photo for its natural aspect ratio using the thumb.
