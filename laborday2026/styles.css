@@ -482,10 +482,6 @@ strong { font-weight: 700; }
 
 .photo.loaded { opacity: 1; }
 
-.photo:hover {
-  box-shadow: 0 1px 0 rgba(43,85,28,0.12), 0 18px 36px rgba(43,85,28,0.12);
-}
-
 .photo img {
   width: 100%;
   height: 100%;
@@ -494,7 +490,14 @@ strong { font-weight: 700; }
   transition: transform 700ms ease;
 }
 
-.photo:hover img { transform: scale(1.03); }
+/* Hover affordances only on real mouse devices — touch scrolling on
+   mobile would otherwise trigger them and cause flashing. */
+@media (hover: hover) {
+  .photo:hover {
+    box-shadow: 0 1px 0 rgba(43,85,28,0.12), 0 18px 36px rgba(43,85,28,0.12);
+  }
+  .photo:hover img { transform: scale(1.03); }
+}
 
 /* ------------------------------------------------------------------
    RSVP SECTION

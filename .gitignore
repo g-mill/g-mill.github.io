@@ -2,3 +2,4 @@ node_modules/
 *.mp4
 .DS_Store
 test-write.txt
+laborday2026/photos/*/raw/
