@@ -427,7 +427,12 @@
     // ------------------------------------------------------------------
     const yearsRoot = document.getElementById("photoYears");
 
-    // Probe each photo for its natural aspect ratio (cheap thumbnail).
+    // Map a full-res photo path to its grid thumbnail (~800px JPG).
+    function thumbUrl(url) {
+      return url.replace(/\/photos\/(\d+)\//, "/photos/$1/thumb/");
+    }
+
+    // Probe each photo for its natural aspect ratio using the thumb.
     function loadRatio(url) {
       return new Promise((resolve) => {
         const img = new Image();
@@ -439,7 +444,7 @@
           }
         };
         img.onerror = () => resolve(null);
-        img.src = url + "?w=120";
+        img.src = thumbUrl(url);
       });
     }
 
@@ -517,8 +522,7 @@
         img.loading = "lazy";
         img.decoding = "async";
         img.alt = item.alt;
-        const reqW = Math.min(1800, Math.max(400, itemWidth * (window.devicePixelRatio || 1)));
-        img.src = item.url + "?w=" + Math.round(reqW);
+        img.src = thumbUrl(item.url);
         img.addEventListener("load", () => fig.classList.add("loaded"));
         img.addEventListener("error", () => fig.remove());
 
@@ -652,11 +656,7 @@
       function show() {
         const item = list[idx];
         if (!item) return;
-        const sep = item.url.includes("?") ? "&" : "?";
-        const target = Math.round(
-          Math.min(2400, Math.max(1200, window.innerWidth * (window.devicePixelRatio || 1)))
-        );
-        const newSrc = item.url + sep + "w=" + target;
+        const newSrc = item.url;
 
         captionEl.textContent = `${item.year} · ${idx + 1} / ${list.length}`;
 
@@ -686,7 +686,7 @@
         [-2, -1, 1, 2].forEach((delta) => {
           const n = list[(idx + delta + list.length) % list.length];
           if (n && n !== item) {
-            new Image().src = n.url + sep + "w=" + target;
+            new Image().src = n.url;
           }
         });
       }

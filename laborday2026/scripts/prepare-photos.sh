@@ -19,6 +19,7 @@ fi
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 RAW_DIR="$ROOT/photos/$YEAR/raw"
 OUT_DIR="$ROOT/photos/$YEAR"
+THUMB_DIR="$OUT_DIR/thumb"
 
 if [[ ! -d "$RAW_DIR" ]]; then
   echo "No raw/ folder for $YEAR. Drop originals in:"
@@ -26,6 +27,8 @@ if [[ ! -d "$RAW_DIR" ]]; then
   mkdir -p "$RAW_DIR"
   exit 1
 fi
+
+mkdir -p "$THUMB_DIR"
 
 shopt -s nullglob nocaseglob
 RAW_FILES=( "$RAW_DIR"/*.{jpg,jpeg,png,heic} )
@@ -43,7 +46,9 @@ for src in "${RAW_FILES[@]}"; do
   num=$(printf "%03d" "$i")
   out="$OUT_DIR/${num}.jpg"
 
-  # Resize longest edge to 1800px and re-encode as JPEG quality ~78
+  thumb="$THUMB_DIR/${num}.jpg"
+
+  # Full-res: longest edge 1800px, JPEG quality ~78 (used in lightbox)
   sips \
     --resampleHeightWidthMax 1800 \
     --setProperty format jpeg \
@@ -52,11 +57,22 @@ for src in "${RAW_FILES[@]}"; do
     --out "$out" \
     >/dev/null
 
+  # Thumb: longest edge 800px, JPEG quality ~72 (used in gallery grid)
+  sips \
+    --resampleHeightWidthMax 800 \
+    --setProperty format jpeg \
+    --setProperty formatOptions 72 \
+    "$out" \
+    --out "$thumb" \
+    >/dev/null
+
   # Strip metadata (smaller file, no GPS leak)
   sips --deleteProperty exif "$out" >/dev/null 2>&1 || true
+  sips --deleteProperty exif "$thumb" >/dev/null 2>&1 || true
 
   size_kb=$(($(stat -f%z "$out") / 1024))
-  printf "  %s → %s (%dKB)\n" "$(basename "$src")" "$(basename "$out")" "$size_kb"
+  thumb_kb=$(($(stat -f%z "$thumb") / 1024))
+  printf "  %s → %s (%dKB, thumb %dKB)\n" "$(basename "$src")" "$(basename "$out")" "$size_kb" "$thumb_kb"
 done
 
 echo
