@@ -237,6 +237,7 @@
         <img class="lightbox-img" src="" alt="" />
         <figcaption class="lightbox-caption"></figcaption>
       </figure>
+      <p class="lightbox-loading"><em>memory loading…</em></p>
     </div>
 
   </main>
@@ -252,7 +253,6 @@
         // Add 2025 photos here as they're uploaded:
         photos: [
           "photos/2025/008.jpg",
-          "photos/2025/035.jpg",
           "photos/2025/032.jpg",
           "photos/2025/006.jpg",
           "photos/2025/016.jpg",
@@ -276,7 +276,6 @@
           "photos/2025/014.jpg",
           "photos/2025/004.jpg",
           "photos/2025/005.jpg",
-          "photos/2025/010.jpg",
           "photos/2025/061.jpg",
           "photos/2025/026.jpg",
           "photos/2025/055.jpg",
@@ -291,7 +290,6 @@
           "photos/2025/054.jpg",
           "photos/2025/073.jpg",
           "photos/2025/072.jpg",
-          "photos/2025/063.jpg",
           "photos/2025/067.jpg",
           "photos/2025/033.jpg",
           "photos/2025/002.jpg",
@@ -317,6 +315,7 @@
           "photos/2025/074.jpg",
           "photos/2025/043.jpg",
           "photos/2025/060.jpg",
+          "photos/2025/035.jpg",
           "photos/2025/049.jpg",
           "photos/2025/029.jpg",
           "photos/2025/022.jpg",
@@ -446,102 +445,96 @@
       });
     }
 
-    function packRows(items, containerWidth, gap, targetRowHeight) {
-      // Decide how many rows we want, then distribute items so each row's
-      // aspect-ratio sum is roughly equal. This avoids a stranded last row
-      // and keeps row heights similar — the result reads as a clean
-      // rectangle with no jutting bottom.
-      const targetSumPerRow = (containerWidth + gap) / (targetRowHeight + gap);
-      const totalRatio = items.reduce((s, i) => s + i.ratio, 0);
-      const numRows = Math.max(1, Math.round(totalRatio / targetSumPerRow));
-      const evenSum = totalRatio / numRows;
+    function colCountFor(width) {
+      if (width >= 1300) return 5;
+      if (width >= 900)  return 4;
+      if (width >= 600)  return 3;
+      return 2;
+    }
 
-      const rows = [];
-      let row = [];
-      let cum = 0;
-      let completed = 0;
+    // Single-column masonry packer — drop each item into the currently
+    // shortest column. Guarantees no mid-layout gaps; only the bottom of
+    // the year may be slightly uneven, which is the standard masonry vibe.
+    function packMasonry(items, cols, rowUnit, gap, colWidth) {
+      const colHeights = new Array(cols).fill(0); // in row-units
+      const placements = new Array(items.length);
 
-      for (const it of items) {
-        row.push(it);
-        cum += it.ratio;
-        const threshold = evenSum * (completed + 1);
-        // Close this row when we've reached the next ideal cut, but never
-        // exceed the requested row count.
-        if (cum >= threshold && completed < numRows - 1) {
-          rows.push(row);
-          row = [];
-          completed += 1;
+      items.forEach((item, i) => {
+        const itemH = colWidth / item.ratio;
+        const rowSpan = Math.max(1, Math.round((itemH + gap) / (rowUnit + gap)));
+
+        // Pick the shortest column (ties go to the leftmost)
+        let bestCol = 0;
+        for (let c = 1; c < cols; c++) {
+          if (colHeights[c] < colHeights[bestCol]) bestCol = c;
         }
-      }
-      if (row.length) rows.push(row);
-      return rows;
+
+        placements[i] = { row: colHeights[bestCol], col: bestCol, colSpan: 1, rowSpan };
+        colHeights[bestCol] += rowSpan;
+      });
+      return placements;
     }
 
-    function rowHeightFor(containerWidth) {
-      if (containerWidth >= 1300) return 260;
-      if (containerWidth >= 900)  return 220;
-      if (containerWidth >= 600)  return 190;
-      if (containerWidth >= 420)  return 160;
-      return 130;
-    }
-
-    function renderJustified(container, items, onPhotoClick) {
+    // Masonry render — every photo is one column wide; verticals span more
+    // grid rows than landscapes so they get real visual weight. Items are
+    // dropped into the shortest column at each step, so column heights stay
+    // roughly even and no mid-layout gaps appear.
+    function renderJustified(container, items, openLightbox) {
       container.innerHTML = "";
       const containerWidth = container.clientWidth;
       if (containerWidth <= 0) return;
-      const gap = 8;
-      const targetH = rowHeightFor(containerWidth);
-      container.style.setProperty("--photo-gap", gap + "px");
 
-      const rows = packRows(items, containerWidth, gap, targetH);
+      const cols = colCountFor(containerWidth);
+      const gap = containerWidth >= 900 ? 8 : 6;
+      const rowUnit = 6;
+      const colWidth = (containerWidth - gap * (cols - 1)) / cols;
 
-      rows.forEach((row, ri) => {
-        const isLast = ri === rows.length - 1;
-        const totalRatio = row.reduce((s, i) => s + i.ratio, 0);
-        const totalGap = gap * (row.length - 1);
-        // Height that makes this row exactly fill containerWidth:
-        let rowHeight = (containerWidth - totalGap) / totalRatio;
-        // Cap last row if it would be unusually tall (1–2 wide images):
-        if (isLast && rowHeight > targetH * 1.4) rowHeight = targetH;
+      container.style.setProperty("--row-unit", rowUnit + "px");
 
-        const rowEl = document.createElement("div");
-        rowEl.className = "photo-row";
-        rowEl.style.height = rowHeight + "px";
+      const placements = packMasonry(items, cols, rowUnit, gap, colWidth);
 
-        row.forEach((item) => {
-          const fig = document.createElement("figure");
-          fig.className = "photo";
-          fig.tabIndex = 0;
-          fig.setAttribute("role", "button");
-          fig.setAttribute("aria-label", "View " + item.alt);
-          const w = Math.round(item.ratio * rowHeight);
-          fig.style.width = w + "px";
+      // Visual order = sort placements top-to-bottom, then left-to-right
+      const visualOrder = placements
+        .map((p, i) => ({ p, i }))
+        .sort((a, b) => a.p.row - b.p.row || a.p.col - b.p.col)
+        .map((o) => o.i);
+      const visualItems = visualOrder.map((i) => items[i]);
+      const visualIndexOf = new Array(items.length);
+      visualOrder.forEach((origIdx, vi) => { visualIndexOf[origIdx] = vi; });
 
-          const img = document.createElement("img");
-          img.loading = "lazy";
-          img.decoding = "async";
-          img.alt = item.alt;
-          const reqW = Math.min(1600, Math.max(400, w * (window.devicePixelRatio || 1)));
-          img.src = item.url + "?w=" + Math.round(reqW);
-          img.addEventListener("load", () => fig.classList.add("loaded"));
-          img.addEventListener("error", () => fig.remove());
+      items.forEach((item, i) => {
+        const fig = document.createElement("figure");
+        fig.className = "photo";
+        fig.tabIndex = 0;
+        fig.setAttribute("role", "button");
+        fig.setAttribute("aria-label", "View " + item.alt);
 
-          if (onPhotoClick) {
-            const open = () => onPhotoClick(item);
-            fig.addEventListener("click", open);
-            fig.addEventListener("keydown", (e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                open();
-              }
-            });
+        const p = placements[i];
+        if (!p) return;
+        fig.style.gridRow = (p.row + 1) + " / span " + p.rowSpan;
+        fig.style.gridColumn = (p.col + 1) + " / span " + p.colSpan;
+
+        const itemWidth = colWidth * p.colSpan + gap * (p.colSpan - 1);
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.alt = item.alt;
+        const reqW = Math.min(1800, Math.max(400, itemWidth * (window.devicePixelRatio || 1)));
+        img.src = item.url + "?w=" + Math.round(reqW);
+        img.addEventListener("load", () => fig.classList.add("loaded"));
+        img.addEventListener("error", () => fig.remove());
+
+        const visualIdx = visualIndexOf[i];
+        fig.onclick = () => openLightbox && openLightbox(visualItems, visualIdx);
+        fig.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            fig.click();
           }
-
-          fig.appendChild(img);
-          rowEl.appendChild(fig);
         });
 
-        container.appendChild(rowEl);
+        fig.appendChild(img);
+        container.appendChild(fig);
       });
     }
 
@@ -581,13 +574,13 @@
           }));
         if (items.length === 0) return;
 
-        const onPhotoClick = (item) => Lightbox.open(items, item.index);
+        const openLightbox = (list, idx) => Lightbox.open(list, idx);
 
         let renderTimer = null;
         let lastWidth = 0;
         const render = () => {
           lastWidth = grid.clientWidth;
-          renderJustified(grid, items, onPhotoClick);
+          renderJustified(grid, items, openLightbox);
         };
         render();
 
@@ -657,6 +650,7 @@
       let idx = 0;
 
       let loadToken = 0;
+      let loadingDelayTimer = null;
       function show() {
         const item = list[idx];
         if (!item) return;
@@ -666,25 +660,31 @@
         );
         const newSrc = item.url + sep + "w=" + target;
 
-        // Caption updates immediately so navigation feels snappy.
         captionEl.textContent = `${item.year} · ${idx + 1} / ${list.length}`;
 
-        // Wait for the new image to be ready before swapping into the DOM —
-        // keeps the previous photo visible during the fetch instead of
-        // flashing to blank.
         const myToken = ++loadToken;
+
+        // Show the "memory loading…" placeholder only if the load takes
+        // longer than ~140ms — fast cache hits stay flicker-free.
+        clearTimeout(loadingDelayTimer);
+        loadingDelayTimer = setTimeout(() => {
+          if (myToken === loadToken) el.classList.add("is-loading");
+        }, 140);
+
         const next = new Image();
         const swap = () => {
-          if (myToken !== loadToken) return; // user moved on, ignore
+          if (myToken !== loadToken) return; // user moved on
+          clearTimeout(loadingDelayTimer);
+          el.classList.remove("is-loading");
           imgEl.src = newSrc;
           imgEl.alt = item.alt;
         };
         next.onload = swap;
         next.onerror = swap;
         next.src = newSrc;
-        if (next.complete) swap(); // cache hit — no waiting
+        if (next.complete) swap(); // cache hit — instant
 
-        // Aggressively preload ±2 so quick swipes still feel instant.
+        // Preload ±2 so quick swipes still feel snappy
         [-2, -1, 1, 2].forEach((delta) => {
           const n = list[(idx + delta + list.length) % list.length];
           if (n && n !== item) {

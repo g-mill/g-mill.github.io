@@ -459,15 +459,20 @@ strong { font-weight: 700; }
   font-size: 0.9rem;
 }
 
-/* Justified-row layout: each row is a flex line whose images sum to
-   container width, all sharing the same height. Bottom edge is straight. */
-.photo-row {
-  display: flex;
-  gap: var(--photo-gap, 8px);
-  margin-bottom: var(--photo-gap, 8px);
+/* Masonry-style layout — each photo's row-span is set in JS based on its
+   aspect ratio, so verticals take real estate proportional to their shape
+   and don't get squashed by their landscape neighbors. */
+.photo-justified {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: var(--row-unit, 6px);
+  gap: 8px;
   width: 100%;
 }
-.photo-row:last-child { margin-bottom: 0; }
+
+@media (max-width: 1300px) { .photo-justified { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 900px)  { .photo-justified { grid-template-columns: repeat(3, 1fr); gap: 6px; } }
+@media (max-width: 600px)  { .photo-justified { grid-template-columns: repeat(2, 1fr); gap: 6px; } }
 
 .photo {
   position: relative;
@@ -576,7 +581,34 @@ strong { font-weight: 700; }
   -webkit-user-drag: none;
   font-size: 0;
   color: transparent;
+  transition: opacity 200ms ease;
 }
+
+/* While the next image is fetching, hide the broken-image icon and reveal
+   the "memory loading…" message instead. The .is-loading class is applied
+   only after a short delay so cache hits don't cause a flicker. */
+.lightbox.is-loading .lightbox-img,
+.lightbox.is-loading .lightbox-caption {
+  opacity: 0;
+}
+
+.lightbox-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  color: rgba(246, 243, 236, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.lightbox.is-loading .lightbox-loading { opacity: 1; }
 
 .lightbox-caption {
   color: rgba(246, 243, 236, 0.72);
