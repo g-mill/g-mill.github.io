@@ -25,11 +25,16 @@
 <body>
 
   <header class="nav" id="top">
-    <a href="#schedule" class="nav-link">SCHEDULE</a>
-    <a href="#info" class="nav-link">INFO</a>
-    <a href="#packing" class="nav-link">PACKING LIST</a>
-    <a href="#photos" class="nav-link">PHOTOS</a>
-    <a href="#rsvp" class="nav-link">RSVP</a>
+    <a href="#top" class="nav-brand" aria-label="Back to top">
+      <img src="assets/labor-day-title.png" alt="Labor Day at the Lake" />
+    </a>
+    <div class="nav-links">
+      <a href="#schedule" class="nav-link">SCHEDULE</a>
+      <a href="#info" class="nav-link">INFO</a>
+      <a href="#packing" class="nav-link">PACKING LIST</a>
+      <a href="#photos" class="nav-link">PHOTOS</a>
+      <a href="#rsvp" class="nav-link">RSVP</a>
+    </div>
   </header>
 
   <main>
@@ -469,6 +474,28 @@
           clearTimeout(renderTimer);
           renderTimer = setTimeout(render, 120);
         });
+      });
+    });
+
+    // Reveal the nav wordmark once the hero scrolls off — gives users a
+    // clear "back to top" affordance without cluttering the home view.
+    const navEl = document.querySelector(".nav");
+    const heroEl = document.querySelector(".hero");
+    if (navEl && heroEl) {
+      const heroSentinel = new IntersectionObserver(
+        ([entry]) => navEl.classList.toggle("scrolled", !entry.isIntersecting),
+        { rootMargin: "-60px 0px 0px 0px", threshold: 0 }
+      );
+      heroSentinel.observe(heroEl);
+    }
+
+    // The nav holds id="top", but it's sticky so the browser thinks
+    // the anchor is already in view and skips the scroll. Force it.
+    document.querySelectorAll('a[href="#top"]').forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        history.replaceState(null, "", location.pathname + location.search);
       });
     });
 
