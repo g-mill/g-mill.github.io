@@ -50,10 +50,10 @@
 
     .confessional .prompt {
       font-family: var(--serif);
-      font-style: italic;
       color: var(--ink-soft);
-      font-size: 1.05rem;
-      max-width: 28rem;
+      font-size: clamp(0.95rem, 2.4vw, 1.1rem);
+      letter-spacing: 0.14em;
+      max-width: 32rem;
       line-height: 1.55;
     }
 
@@ -126,6 +126,15 @@
       color: #8a3a23;
     }
 
+    #gate,
+    #reveal {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
     .video-wrap {
       width: min(960px, 100%);
       aspect-ratio: 16 / 9;
@@ -196,7 +205,7 @@
     <!-- GATE -->
     <section id="gate">
       <p class="prompt">
-        Speak the word and the curtain parts.
+        Where oh where was last year's confessional held? (in all caps)
       </p>
       <form class="gate-form" id="gateForm" autocomplete="off">
         <input
