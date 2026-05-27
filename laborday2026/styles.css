@@ -383,6 +383,10 @@ strong { font-weight: 700; }
 
 .info-block p { margin: 0; max-width: 320px; margin-left: auto; margin-right: auto; }
 
+/* When the last block lands alone on its row (odd count, 2-col layout),
+   span the full row so it sits centered instead of orphaned left. */
+.info-block:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
 .info-heading {
   font-weight: 700;
   font-size: 0.78rem;
