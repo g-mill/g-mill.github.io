@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Labor Day at the Lake 2026 — Schedule</title>
+<style>
+  /* ----------------------------------------------------------------
+     Print sheet — US Letter, landscape.
+     Same palette and Times setting as the invitation site.
+  ---------------------------------------------------------------- */
+  @page {
+    size: 11in 8.5in;
+    margin: 0;
+  }
+
+  :root {
+    --paper: #f6f3ec;
+    --ink: #2b551c;
+    --rule: rgba(43, 85, 28, 0.18);
+    --serif: "Times New Roman", Times, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: #ffffff;
+    color: var(--ink);
+    font-family: var(--serif);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Plain white ground — no cream fill, no grain, so it prints clean
+     and uses no ink on the background. */
+  .sheet {
+    width: 11in;
+    height: 8.5in;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+    padding: 0.44in 0.6in 0.38in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .inner { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
+
+  /* ---------------- Masthead ---------------- */
+  header { text-align: center; flex: none; }
+
+  .kicker {
+    margin: 0 0 0.14in;
+    font-size: 6.6pt;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    opacity: 0.72;
+  }
+
+  .title {
+    display: block;
+    margin: 0 auto;
+    width: 3.55in;
+    max-width: 46%;
+  }
+
+  .dates {
+    margin: 0.13in 0 0;
+    font-style: italic;
+    font-size: 9pt;
+    letter-spacing: 0.02em;
+  }
+
+  .venue {
+    margin: 0.045in 0 0;
+    font-size: 7.4pt;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    opacity: 0.72;
+  }
+
+  .ornament {
+    margin: 0.13in auto 0.15in;
+    font-size: 6.5pt;
+    opacity: 0.45;
+    text-align: center;
+  }
+
+  /* ---------------- Schedule ---------------- */
+  .schedule {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 0.72fr;
+    column-gap: 0.34in;
+    /* stretch, so every column rule runs the full height of the block
+       and all four read as the same length */
+    align-items: stretch;
+  }
+
+  .day {
+    text-align: center;
+    padding: 0 0.06in;
+    border-left: 0.5pt solid var(--rule);
+  }
+  .day:first-child { border-left: 0; }
+
+  .day-name {
+    margin: 0 0 0.15in;
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+  }
+
+  .day p {
+    margin: 0 0 0.13in;
+    font-size: 9.4pt;
+    line-height: 1.34;
+  }
+  .day p:last-child { margin-bottom: 0; }
+
+  .time {
+    font-style: italic;
+  }
+
+  /* ---------------- Footer ---------------- */
+  footer {
+    flex: none;
+    margin-top: 0.2in;
+    padding-top: 0.11in;
+    border-top: 0.5pt solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    font-size: 6.6pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="inner">
+
+      <header>
+        <p class="kicker">Griffin Miller invites you to the fourth annual</p>
+        <img class="title" src="assets/labor-day-title.png" alt="Labor Day at the Lake" />
+        <p class="dates">Friday, September 4 to Monday, September 7, 2026</p>
+        <p class="venue">Camp Starlight &nbsp;·&nbsp; 151 Starlight Lake Rd, Starlight, PA 18461</p>
+        <div class="ornament">✦</div>
+      </header>
+
+      <div class="schedule">
+
+        <div class="day">
+          <h3 class="day-name">FRIDAY</h3>
+          <p><span class="time">4:30 PM</span><br/>Guest Arrival</p>
+          <p><span class="time">5:30 PM</span><br/>Shower Hour</p>
+          <p><span class="time">6:00 PM</span><br/>Camp Tour</p>
+          <p><span class="time">6:30 PM</span><br/>Welcome Circle at the Flagpole</p>
+          <p><span class="time">7:00 PM</span><br/>Cookout</p>
+          <p><span class="time">8:30 PM</span><br/>Square Dancing</p>
+          <p><span class="time">10:00 PM</span><br/>Campfire by the Lake</p>
+        </div>
+
+        <div class="day">
+          <h3 class="day-name">SATURDAY</h3>
+          <p><span class="time">8:00–10:00 AM</span><br/>Rolling Breakfast in the Farmhouse</p>
+          <p><span class="time">9:00, 9:45 &amp; 10:30 AM</span><br/>Cycling in the Carriage House</p>
+          <p><span class="time">11:00 AM</span><br/>Pickleball Tournament</p>
+          <p><span class="time">12:30 PM</span><br/>Lunch served in the Farmhouse,<br/>Picnic by the Lake</p>
+          <p><span class="time">1:30–5:00 PM</span><br/>Lakeside activities</p>
+          <p><span class="time">5:30 PM</span><br/>Shower Hour</p>
+          <p><span class="time">6:30 PM</span><br/>Dinner in the Dining Hall</p>
+          <p><span class="time">8:00 PM</span><br/>Movie Night by the Amphitheater</p>
+          <p><span class="time">10:00 PM</span><br/>Campfire by Boys Waterfront</p>
+        </div>
+
+        <div class="day">
+          <h3 class="day-name">SUNDAY</h3>
+          <p><span class="time">8:30–10:30 AM</span><br/>Rolling Breakfast in the Farmhouse</p>
+          <p><span class="time">10:30 AM</span><br/>Yoga in the Amphitheater</p>
+          <p><span class="time">12:00 PM</span><br/>Lunch served in the Farmhouse</p>
+          <p><span class="time">12:30–5:00 PM</span><br/>Lakeside Activities</p>
+          <p><span class="time">2:00 PM</span><br/>Sloshball</p>
+          <p><span class="time">5:00 PM</span><br/>Shower Hour</p>
+          <p><span class="time">6:00 PM</span><br/>Bunk Bar Crawl on Girls Side</p>
+          <p><span class="time">7:30 PM</span><br/>Dinner at the Cove</p>
+          <p><span class="time">10:00 PM</span><br/>Pregame at Girls 26</p>
+          <p><span class="time">11:00 PM</span><br/>Let&rsquo;s dance… meet at the Canteen</p>
+        </div>
+
+        <div class="day">
+          <h3 class="day-name">MONDAY</h3>
+          <p><span class="time">8:00–10:00 AM</span><br/>Recovery in the Farmhouse</p>
+          <p>Guest Departure</p>
+        </div>
+
+      </div>
+
+      <footer>
+        <span>Labor Day at the Lake</span>
+        <span>Schedule</span>
+        <span>Camp Starlight, PA</span>
+      </footer>
+
+    </div>
+  </div>
+</body>
+</html>
