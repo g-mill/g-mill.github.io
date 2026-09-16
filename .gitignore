@@ -1,5 +1,14 @@
 node_modules/
 *.mp4
+!media/cosmos/ai-captions.mp4
+!media/cosmos/autocomplete.mp4
+!media/cosmos/collection-recommendations.mp4
+!media/cosmos/color-extraction.mp4
+!media/cosmos/similar-elements.mp4
+!media/krea/krea-2-moodboard-excerpt.mp4
+!media/krea/moodboard-gallery.mp4
+!media/krea/moodboard-sharing.mp4
+!media/new-york-times/recipe-metric-conversion-web.mp4
 .DS_Store
 test-write.txt
 laborday2026/photos/*/raw/
