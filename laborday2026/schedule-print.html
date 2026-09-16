@@ -73,34 +73,33 @@
   }
 
   .venue {
-    margin: 0.045in 0 0;
+    margin: 0.045in 0 0.28in;
     font-size: 7.4pt;
     letter-spacing: 0.13em;
     text-transform: uppercase;
     opacity: 0.72;
   }
 
-  .ornament {
-    margin: 0.13in auto 0.15in;
-    font-size: 6.5pt;
-    opacity: 0.45;
-    text-align: center;
-  }
 
   /* ---------------- Schedule ---------------- */
+  /* Four equal columns with no gap: each rule then falls exactly on a
+     column boundary, and symmetric padding keeps the text optically
+     centred between the rules. A `column-gap` would push each rule
+     against its column's left edge instead of into the middle of the
+     gutter, which reads as off-centre. */
   .schedule {
     flex: 1;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 0.72fr;
-    column-gap: 0.34in;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 0;
     /* stretch, so every column rule runs the full height of the block
-       and all four read as the same length */
+       and all read as the same length */
     align-items: stretch;
   }
 
   .day {
     text-align: center;
-    padding: 0 0.06in;
+    padding: 0 0.17in;
     border-left: 0.5pt solid var(--rule);
   }
   .day:first-child { border-left: 0; }
@@ -147,7 +146,6 @@
         <img class="title" src="assets/labor-day-title.png" alt="Labor Day at the Lake" />
         <p class="dates">Friday, September 4 to Monday, September 7, 2026</p>
         <p class="venue">Camp Starlight &nbsp;·&nbsp; 151 Starlight Lake Rd, Starlight, PA 18461</p>
-        <div class="ornament">✦</div>
       </header>
 
       <div class="schedule">

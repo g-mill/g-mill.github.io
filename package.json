@@ -1,5 +1,12 @@
 {
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.3",
+    "media-chrome": "4.19.2"
+  },
+  "devDependencies": {
+    "http-server": "14.1.1"
+  },
+  "scripts": {
+    "preview": "http-server . -a 127.0.0.1 -p 8000 -c-1"
   }
 }

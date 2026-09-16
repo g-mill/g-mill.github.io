@@ -1,283 +1,149 @@
-/* Custom navbar styling */
-.navbar {
-    background-color: transparent; /* Transparent background color */
-    padding: 10px 0; /* Add some padding for better spacing */
-  }
-  
-  .navbar-nav {
-    width: 100%;
-    display: flex;
-    justify-content: space-between; /* Evenly spread the nav links */
-    font-family: 'Helvetica Neue', sans-serif;
-    font-size: 1rem; /* Adjust the font size to match the picture */
-    font-weight: 375; /* Use a lighter font weight */
-  }
-  
-  .nav-link {
-    color: #343a40; /* Dark text color */
-    text-align: center;
-    width: 100%; /* Make each link take equal space */
-    font-weight: 375; /* Light font weight for thin text */
-  }
-  
-  .nav-link:hover {
-    text-decoration: none; /* Remove underline on hover */
-  }
-
-.content-container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 19px;
-  padding-right: 19px;
-}
-  
-  
-/* Custom About Me section styling */
-#about {
-    background-color: #ffffff; /* White background */
-    margin-top: 80px; /* Add margin-top to push the section down */
-    margin-bottom: 80px;
+:root {
+  --accent: #803b36;
+  color-scheme: light;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  color: #000;
+  background: #fff;
 }
 
-/* Styling for the intro text */
-.intro {
-    font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 349; /* Light font weight */
-    color: #000000; /* Black text color */
-    font-size: 0.95rem; /* Adjust font size as needed */
-    line-height: 1.25; /* Adjust line height for better spacing */
-    margin-top: 0;
+body { margin: 8px; }
+a, a:visited, a:hover, a:active { color: var(--accent); }
+::selection { color: #fff; background: var(--accent); }
+a:focus-visible, video:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.hello h1 { font-size: 28px; font-weight: normal; margin: 0 0 8px; }
+.hello p { margin: 0; }
+.hello p + p { margin-top: 16px; }
+section { margin-top: 32px; }
+h2 { font-size: 20px; font-style: italic; font-weight: normal; margin: 0 0 8px; }
+.project-link { margin: 8px 0; }
+.courses { margin: 0; padding-left: 28px; }
+.courses li { margin-bottom: 5px; }
+.course-row { display: grid; grid-template-columns: 9em minmax(0, 1fr); column-gap: 0.4em; }
+.education-summary { margin: 0 0 12px; }
+.education-photos { display: flex; flex-wrap: wrap; gap: 20px 14px; align-items: stretch; }
+.education-photos figure { display: flex; flex-direction: column; width: 370px; max-width: 100%; margin: 0; }
+.education-photos img { display: block; width: 100%; height: auto; }
+.education-photos figcaption { margin-top: 6px; }
+.music-intro { margin: 0 0 12px; }
+.recordings { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 14px; align-items: start; }
+.recording { width: 100%; min-width: 0; max-width: none; }
+.recording video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+.recording h3 { font-size: inherit; font-weight: normal; margin: 6px 0 0; }
+.recording p { margin: 5px 0; }
+.program-notes { margin-top: 5px; }
+.camp p { margin: 12px 0; }
+.camp-photos { display: grid; grid-template-columns: 1.5081327261fr 0.7501220107fr; gap: 14px; max-width: 1092px; margin-top: 18px; }
+.camp-photos img { display: block; width: 100%; height: auto; min-width: 0; }
+footer { margin-top: 40px; }
+footer a { overflow-wrap: anywhere; }
+.skip-link { position: absolute; left: 8px; top: -60px; background: #fff; }
+.skip-link:focus { top: 8px; }
+
+.detail-page h1 { font-size: 24px; font-weight: normal; margin: 24px 0 16px; }
+.detail-page h2 { font-size: 18px; font-style: normal; font-weight: bold; margin: 28px 0 10px; }
+.detail-page p, .detail-page li { line-height: 1.4; }
+.detail-page a { overflow-wrap: anywhere; }
+.detail-page li + li { margin-top: 8px; }
+.detail-page img { max-width: 100%; height: auto; }
+.instrument-photo { margin: 0; }
+.instrument-photo img { display: block; width: auto; max-height: 65vh; object-fit: contain; }
+.instrument-photo figcaption { margin-top: 8px; }
+.detail-page video { display: block; width: 720px; max-width: 100%; aspect-ratio: 16 / 9; background: #000; }
+.detail-page video.project-demo { width: 400px; height: auto; aspect-ratio: auto; }
+.krea-videos figure, .cosmos-videos figure { width: 720px; max-width: 100%; margin: 24px 0; }
+.krea-videos video, .cosmos-videos video { width: 100%; height: auto; aspect-ratio: auto; }
+.krea-videos figcaption, .cosmos-videos figcaption { margin-top: 6px; }
+.cosmos-videos .square-demo { width: 480px; }
+.table-scroll { max-width: 100%; overflow-x: auto; }
+.syllabus-page table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+.syllabus-page caption { text-align: left; font-style: italic; margin-bottom: 8px; }
+.syllabus-page th, .syllabus-page td { border: 1px solid #aaa; padding: 6px 8px; text-align: left; vertical-align: top; line-height: 1.4; }
+.syllabus-page td:first-child { min-width: 5em; }
+
+@media print {
+  .detail-page { max-width: none; margin: 0; }
+  .detail-page nav, .detail-page footer { display: none; }
+  .detail-page h1, .detail-page h2 { break-after: avoid; }
+  .detail-page tr { break-inside: avoid; }
 }
 
-.title-header{
-  font-size: 2.7rem; /* Adjust font size as needed */
-  font-weight: 200; /* Semi-bold weight */
-  margin-bottom: 0px; /* Space above the section title */
-  font-family: 'Helvetica Neue', sans-serif;
-  margin-top: 0;
+@media (max-width: 600px) {
+  .course-row { grid-template-columns: minmax(0, 1fr); }
+  .recording { width: 100%; max-width: 480px; }
 }
 
+.research-project { margin-top: 24px; }
+.research-project + .research-project { margin-top: 36px; }
+.research-project h3 { font-size: 16px; margin: 0 0 10px; }
+.research-project p { margin: 8px 0; line-height: 1.45; }
 
-#about .experiences {
-  margin-top: auto; /* Push the experiences to the bottom */
-  align-self: flex-start; /* Aligns the work experiences to the bottom */
+.music-player { --media-primary-color: #000; --media-secondary-color: #fff; --media-control-hover-background: #eee; --media-font: 16px "Times New Roman", Times, serif; --media-font-family: "Times New Roman", Times, serif; --media-font-weight: normal; --media-range-bar-color: var(--accent); --media-range-track-background: #ddd; --media-control-padding: 8px 5px; }
+.music-player media-controller { display: block; width: 100%; }
+.music-player media-control-bar { display: flex; width: 100%; background: white; align-items: center; }
+.music-player media-control-bar:not(:defined) { display: none; }
+.music-player media-time-range { min-width: 40px; flex: 1; }
+.music-player media-time-display { --media-font-size: 13px; }
+.music-player:fullscreen { display: flex; flex-direction: column; justify-content: center; background: #000; }
+.music-player:fullscreen media-controller { min-height: 0; flex: 1; }
+.music-player:fullscreen video { height: 100%; object-fit: contain; }
+.music-player:fullscreen media-control-bar { flex-shrink: 0; }
+@media (max-width: 400px) { .music-player { --media-font: 14px "Times New Roman", Times, serif; --media-control-padding: 8px 3px; } }
+
+.music-player media-control-bar { gap: 3px; }
+.play-glyph {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-right: 5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid currentColor;
 }
 
-/* Styling for the email link */
-.email-link {
-    color: #616161; /* Initial grey color */
-    text-decoration: none; /* Remove underline */
-    transition: color 0.3s; /* Smooth transition */
-}
+.performance-page .music-player { width: 720px; max-width: 100%; }
+.performance-page .music-player video { width: 100%; }
+.recordings .music-player media-control-bar { flex-wrap: wrap; }
+.recordings .music-player media-time-range { flex-basis: 70px; }
+@media (max-width: 700px) { .recordings { grid-template-columns: 1fr; } .recording { max-width: none; } }
 
-.email-link:hover {
-    color: #1f1f1f; /* Darker grey on hover */
-}
-
-/* Style for the smaller image */
-.minimalist-image {
-    width: 100%; /* Ensure image is responsive */
-    height: auto;
-    display: block; /* Center the image */ 
-    max-width: 550px; /* Set maximum width for the image */
-    margin-right: 0px;
-    padding-right: 0px;
-}
-
-.marimba-image {
-  width: 100%; /* Ensure image is responsive */
-  height: auto;
-  display: block; /* Center the image */
-  max-width: 100%; /* Set maximum width for the image */
-  margin-right: 0px;
-}
-
-.col-md-auto {
-  flex: 0 0 auto;
-  width: auto;
-  max-width: 650px; /* Ensure the max width for the image */
-}
-
-
-/* Styling for section titles */
-.section-title {
-    font-size: 1.25rem; /* Adjust font size as needed */
-    font-weight: 200; /* Semi-bold weight */
-    margin-top: 20px; /* Space above the section title */
-}
-
-#about .col-md-6 {
-  padding-left: 0; /* Remove left padding */
-  padding-right: 0; /* Remove right padding */
-}
-
-
-
-/* Styling for the client list */
-.client-list {
-    font-size: 0.95rem;
-    list-style-type: none; /* Remove default list styling */
-    padding: 0; /* Remove default padding */
-    font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 349; /* Light font weight */
-    color: #000000; /* Black text color */
-    line-height: 1.5; /* Adjust line height for better spacing */
-}
-
-.client-list li {
-    margin-bottom: 0; /* Remove space between list items */
-}
-
-/* Position the work experiences at the bottom of the image */
-.work-experiences {
-    bottom: 0;
+#projects .work-content { display: flex; align-items: center; gap: clamp(36px, 6vw, 100px); }
+.work-list { flex: 0 1 auto; }
+.cosmos-stickers { position: relative; flex: 1 1 680px; width: min(55vw, 760px); min-width: 480px; height: 215px; }
+.cosmos-stickers a { position: absolute; display: block; line-height: 0; }
+.cosmos-stickers img { display: block; width: 100%; height: auto; }
+.cosmos-stickers .sticker-sculpture { left: 1%; top: 66px; width: 120px; }
+.cosmos-stickers .sticker-backlit { left: 28%; top: 18px; width: 150px; }
+.cosmos-stickers .sticker-fashion { left: 52%; top: 88px; width: 98px; }
+.cosmos-stickers .sticker-fixtures { left: 70%; top: 0; width: 110px; }
+.cosmos-stickers .sticker-lamp { left: 89%; top: 72px; width: 82px; }
+.cosmos-stickers a:hover, .cosmos-stickers a:focus-visible { z-index: 2; }
+@media (min-width: 1250px) {
+  #projects { position: relative; }
+  .cosmos-stickers {
+    position: absolute;
+    top: 0;
+    right: 0;
     left: 0;
-    width: 100%;
-    padding: 10px 0;
-}
-
-
-/* Custom project card styling */
-#projects {
-    background-color: #ffffff; /* Light gray background */
-    padding: 50px 0; /* Vertical padding */
-    margin-bottom: 80px;
-  }
-
-  .project-header{
-    font-size: 2.5rem; /* Adjust font size as needed */
-    font-weight: 200; /* Semi-bold weight */
-    margin-bottom: 50px; /* Space above the section title */
-    font-family: 'Helvetica Neue', sans-serif;
-  }
-  
-  .project-card {
-    background-color: #ffffff; /* White background for project cards */
-    border: 1px solid #e0e0e0; /* Light border */
-    padding: 20px; /* Padding inside the card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    text-align: left; /* Left-aligned text */
-  }
-  
-  .project-title {
-    font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 400; /* Regular font weight */
-    color: #000000; /* Black text color */
-    margin-bottom: 10px; /* Spacing below the title */
-  }
-  
-  .project-subtitle {
-    font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 300; /* Light font weight */
-    color: #6c757d; /* Secondary text color */
-    margin-bottom: 10px; /* Spacing below the subtitle */
-  }
-  
-  .project-text {
-    font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 300; /* Light font weight */
-    color: #6c757d; /* Secondary text color */
-    margin-bottom: 20px; /* Spacing below the text */
-  }
-  
-  .project-link {
-    font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 300; /* Light font weight */
-    color: #0056b3; /* Link color */
-    text-decoration: none; /* Remove underline */
-  }
-  
-  .project-link:hover {
-    text-decoration: underline; /* Underline on hover */
-  }
-
-#buttonwood:hover{
-    cursor: pointer;
-}
-
-/* Minimalistic content styling */
-.minimalist-content {
-    font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 300; /* Light font weight */
-    color: #000000; /* Black text color */
-    margin-top: 0;
-  }
-  
-  .minimalist-title {
-    font-size: 1rem; /* Smaller font size */
-    font-weight: 400; /* Regular font weight */
-    margin-top: 0px; /* Remove default margin */
-    line-height: 1.5; /* Adjust line height for better spacing */
-  }
-  
-  .minimalist-subtitle {
-    font-size: 0.875rem; /* Smaller font size for subtitle */
-    font-weight: 300; /* Light font weight */
-    margin: 0; /* Remove default margin */
-    line-height: 1.5; /* Adjust line height for better spacing */
-  }
-  
-  .minimalist-text {
-    font-size: 0.9rem; /* Smaller font size for text */
-    font-weight: 300; /* Light font weight */
-    line-height: 1.5; /* Adjust line height for better spacing */
-    margin-top: 10px; /* Space between paragraphs */
-  }
-  
-  
-  /* Video should also be responsive */
-  #buttonwood {
-    width: 100%; /* Make the video responsive */
-    height: auto;
-  }
-  
-  .music-dates {
-    font-size: 0.9rem; /* Smaller font size for text */
-    font-weight: 300; /* Light font weight */
-    line-height: 1.5; /* Adjust line height for better spacing */
-    margin-top: 10px; /* Space between paragraphs */
-    margin-bottom: 0px;
-  }
-
-  #music{
-    padding-top: 40px;
-  }
-
-
-  .footer {
-    margin-top: 7px;
-    margin-bottom: 7px;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-    bottom: 0;
-    left: 0;
-  }
-  
-  .footer .footer-text {
-    font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 300; /* Light font weight */
-    color: #555555; /* Gray text color */
-    font-size: 0.8rem; /* Adjust font size as needed */
+    width: auto;
+    min-width: 0;
+    height: 670px;
     margin: 0;
+    pointer-events: none;
   }
-
-  .col-marimba{
-    margin-right: 0;
-    padding-right: 0;
-  }
-  
-
-
-.double-link a {
-  display: block;
-  margin-bottom: 7px; /* Adjust the value as needed for spacing */
+  .cosmos-stickers a { pointer-events: auto; }
+  .cosmos-stickers .sticker-sculpture { left: 32.7%; top: 0; width: clamp(130px, 10.4vw, 155px); }
+  .cosmos-stickers .sticker-backlit { left: 62.3%; top: -65px; width: clamp(190px, 15.1vw, 225px); }
+  .cosmos-stickers .sticker-fashion { left: 71%; top: 100px; width: clamp(118px, 9.4vw, 140px); }
+  .cosmos-stickers .sticker-fixtures { left: 49.1%; top: 35px; width: clamp(135px, 10.7vw, 160px); }
+  .cosmos-stickers .sticker-lamp { left: 85.8%; top: 9px; width: clamp(94px, 7.5vw, 112px); }
 }
-
-.double-link a:last-child {
-    margin-bottom: 0; /* Removes margin from the last link to avoid unnecessary spacing */
+@media (max-width: 850px) {
+  #projects .work-content { display: block; }
+  .cosmos-stickers { width: 100%; min-width: 0; max-width: 520px; height: 245px; margin-top: 14px; }
+  .cosmos-stickers .sticker-sculpture { left: 0; top: 95px; width: 88px; }
+  .cosmos-stickers .sticker-backlit { left: 25%; top: 140px; width: 94px; }
+  .cosmos-stickers .sticker-fashion { left: 50%; top: 48px; width: 72px; }
+  .cosmos-stickers .sticker-fixtures { left: 68%; top: 105px; width: 78px; }
+  .cosmos-stickers .sticker-lamp { left: 84%; top: 0; width: 60px; }
 }
-
-
-  
