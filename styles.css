@@ -40,6 +40,11 @@ footer a { overflow-wrap: anywhere; }
 .skip-link { position: absolute; left: 8px; top: -60px; background: #fff; }
 .skip-link:focus { top: 8px; }
 
+.work-index-page { min-height: calc(100vh - 16px); display: flex; flex-direction: column; }
+.work-index-page main { flex: 1; }
+.work-index-page #projects { min-height: 300px; }
+.work-index-page footer { margin-top: auto; }
+
 .detail-page h1 { font-size: 24px; font-weight: normal; margin: 24px 0 16px; }
 .detail-page h2 { font-size: 18px; font-style: normal; font-weight: bold; margin: 28px 0 10px; }
 .detail-page p, .detail-page li { line-height: 1.4; }
@@ -131,6 +136,7 @@ footer a { overflow-wrap: anywhere; }
     margin: 0;
     pointer-events: none;
   }
+  .work-index-page .cosmos-stickers { top: 36px; }
   .cosmos-stickers a { pointer-events: auto; }
   .cosmos-stickers .sticker-sculpture { left: 32.7%; top: 0; width: clamp(130px, 10.4vw, 155px); }
   .cosmos-stickers .sticker-backlit { left: 62.3%; top: -65px; width: clamp(190px, 15.1vw, 225px); }
