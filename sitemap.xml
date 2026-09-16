@@ -2,8 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://griffinmiller.com/</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-09-16</lastmod>
     <priority>1.0</priority>
   </url>
+  <url><loc>https://griffinmiller.com/work/cosmos</loc></url>
+  <url><loc>https://griffinmiller.com/work/design-miami</loc></url>
+  <url><loc>https://griffinmiller.com/work/new-york-times</loc></url>
+  <url><loc>https://griffinmiller.com/teaching/cisc-5004</loc></url>
+  <url><loc>https://griffinmiller.com/teaching/cisc-1100</loc></url>
+  <url><loc>https://griffinmiller.com/teaching/csci-49900</loc></url>
+  <url><loc>https://griffinmiller.com/music/buttonwood</loc></url>
+  <url><loc>https://griffinmiller.com/music/stravinsky</loc></url>
+  <url><loc>https://griffinmiller.com/music/bach</loc></url>
+  <url><loc>https://griffinmiller.com/music/gordon</loc></url>
+  <url><loc>https://griffinmiller.com/music/marimba</loc></url>
+  <url><loc>https://griffinmiller.com/music/piano</loc></url>
+  <url><loc>https://griffinmiller.com/music/malletstation</loc></url>
 </urlset>
