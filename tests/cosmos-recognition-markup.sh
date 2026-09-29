@@ -25,6 +25,7 @@ class OverviewParser(HTMLParser):
         self.recognition_div_depth = 0
         self.band_links = []
         self.images = []
+        self.stylesheets = []
         self.vogue_in_features = False
         self.apple_quote_in_recognition = False
 
@@ -64,6 +65,8 @@ class OverviewParser(HTMLParser):
             self.band_links.append(attrs.get("href", ""))
         if tag == "img":
             self.images.append(attrs.get("src", ""))
+        if tag == "link" and "stylesheet" in attrs.get("rel", "").split():
+            self.stylesheets.append(attrs.get("href", ""))
 
     def handle_endtag(self, tag):
         if tag == "div" and self.band_div_depth:
@@ -79,6 +82,7 @@ class DetailParser(HTMLParser):
         super().__init__()
         self.links = []
         self.images = []
+        self.stylesheets = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -86,6 +90,8 @@ class DetailParser(HTMLParser):
             self.links.append(attrs.get("href", ""))
         if tag == "img":
             self.images.append((attrs.get("src", ""), attrs.get("alt", "")))
+        if tag == "link" and "stylesheet" in attrs.get("rel", "").split():
+            self.stylesheets.append(attrs.get("href", ""))
 
 
 overview = OverviewParser()
@@ -124,6 +130,13 @@ assert detail_path.exists(), "Apple App of the Day detail page is missing"
 
 detail = DetailParser()
 detail.feed(detail_path.read_text())
+
+assert len(overview.stylesheets) == 1 and "?v=" in overview.stylesheets[0], (
+    "Cosmos must cache-bust its stylesheet so deployed HTML cannot use stale CSS"
+)
+assert detail.stylesheets == overview.stylesheets, (
+    "Cosmos overview and App of the Day must load the same stylesheet version"
+)
 
 assert any(src == APPLE_IMAGE and alt.strip() for src, alt in detail.images), (
     "Apple detail page must show the screenshot with useful alternative text"
