@@ -51,6 +51,10 @@ footer a { overflow-wrap: anywhere; }
 .detail-page a { overflow-wrap: anywhere; }
 .detail-page li + li { margin-top: 8px; }
 .detail-page img { max-width: 100%; height: auto; }
+.sorbaras-source-figure { width: 900px; max-width: 100%; margin: 28px 0; }
+.sorbaras-source-preview { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.sorbaras-source-preview img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.sorbaras-source-figure figcaption { margin-top: 8px; }
 .instrument-photo { margin: 0; }
 .instrument-photo img { display: block; width: auto; max-height: 65vh; object-fit: contain; }
 .instrument-photo figcaption { margin-top: 8px; }
@@ -88,6 +92,7 @@ footer a { overflow-wrap: anywhere; }
   .recording { width: 100%; max-width: 480px; }
   .feature-quote blockquote { margin-left: 16px; }
   .feature-quote blockquote p { font-size: inherit; }
+  .sorbaras-source-preview { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 1050px) {

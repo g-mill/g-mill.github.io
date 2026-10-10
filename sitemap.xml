@@ -2,10 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://griffinmiller.com/</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <priority>1.0</priority>
   </url>
   <url><loc>https://griffinmiller.com/work/cosmos</loc></url>
+  <url><loc>https://griffinmiller.com/work/sorbaras</loc></url>
   <url><loc>https://griffinmiller.com/work/design-miami</loc></url>
   <url><loc>https://griffinmiller.com/work/new-york-times</loc></url>
   <url><loc>https://griffinmiller.com/teaching/cisc-5004</loc></url>
