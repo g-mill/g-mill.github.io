@@ -1,0 +1,40 @@
+# Griffin Miller
+
+> Griffin Miller is an AI engineer and musician based in New York. Griffin works on AI/ML and recommendation systems at Cosmos, works with companies on applied AI, teaches computer science at Fordham University and Hunter College, and performs as a classical orchestral timpanist, percussionist, and conductor.
+
+This is a personal site. The Markdown version of the homepage has everything in one place, including a short Q&A. Get it at https://griffinmiller.com/index.md or by requesting https://griffinmiller.com/ with `Accept: text/markdown`. Other pages are HTML. For anything the site does not answer, email griffin@griffinmiller.com.
+
+## Start here
+
+- [Homepage (Markdown)](https://griffinmiller.com/index.md): Bio, work, teaching, education, research, music, Camp Starlight, and Q&A
+- [Homepage](https://griffinmiller.com/): The HTML homepage
+
+## Work
+
+- [Cosmos](https://griffinmiller.com/work/cosmos): AI/ML and recommendation systems at Cosmos, including discovery feeds, visual search, ranking, captioning, and recommendations
+- [Sorbara's](https://griffinmiller.com/work/sorbaras): A live Source page connecting the vintage store's Cosmos account to its Shopify site
+- [Design Miami](https://griffinmiller.com/work/design-miami): AI workflows and systems connecting Airtable, Salesforce, Google Drive, Claude, n8n, and Zapier
+- [The New York Times](https://griffinmiller.com/work/new-york-times): Applied LLM work, including editorial word-count tools and recipe measurement conversion for NYT Cooking
+
+## Teaching
+
+- [CISC 5004 Computer Programming C++](https://griffinmiller.com/teaching/cisc-5004): Fordham University, fall 2025 syllabus
+- [CISC 1100 Structures of Computer Science](https://griffinmiller.com/teaching/cisc-1100): Fordham University, fall 2024 syllabus
+- [CSCI 49900 Advanced Applications, a Capstone for Majors](https://griffinmiller.com/teaching/csci-49900): Hunter College, fall 2024 syllabus
+
+## Music
+
+- [Evan Chapman — Buttonwood](https://griffinmiller.com/music/buttonwood): Snare drum and electronics, senior recital, spring 2023
+- [Igor Stravinsky — Septet](https://griffinmiller.com/music/stravinsky): Conducting, senior recital, spring 2023
+- [Johann Sebastian Bach — Cello Suite No. 1, BWV 1007](https://griffinmiller.com/music/bach): Transcribed for marimba, senior recital, spring 2023
+- [Gordon Jacob — Old Wine in New Bottles](https://griffinmiller.com/music/gordon): Conducting the Stanford Philharmonia, winter 2022
+- [Marimba](https://griffinmiller.com/music/marimba): Playing a five-octave marimba at Camp Starlight
+- [Butter yellow spinet piano](https://griffinmiller.com/music/piano): A Baldwin spinet piano in a New York apartment
+- [Pearl EM1 malletSTATION](https://griffinmiller.com/music/malletstation): An electronic marimba in New York
+
+## Contact
+
+- Email: griffin@griffinmiller.com
+- [Résumé (PDF)](https://griffinmiller.com/src/resume.pdf)
+- [GitHub](https://github.com/g-mill)
+- [LinkedIn](https://www.linkedin.com/in/griffindrewmiller)

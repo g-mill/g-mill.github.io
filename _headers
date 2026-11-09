@@ -22,6 +22,17 @@
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
+# Text versions for AI agents. The homepage itself (/) runs through
+# functions/_middleware.js, which sets its own headers.
+/index.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=0, must-revalidate
+  Link: <https://griffinmiller.com/>; rel="canonical"
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=300, must-revalidate
+
 # Sensible defaults for everything else
 /*
   X-Content-Type-Options: nosniff
